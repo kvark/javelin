@@ -50,7 +50,6 @@ pub enum Error {
     BadString,
     IncompleteData,
     InvalidTerminator,
-    InvalidEdgeClassification,
     FunctionCallCycle(spirv::Word),
     // incomplete implementation error
     UnsupportedMatrixStride(spirv::Word),
