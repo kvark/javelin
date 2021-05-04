@@ -77,6 +77,9 @@ pub const SUPPORTED_EXTENSIONS: &[&str] = &[
 ];
 pub const SUPPORTED_EXT_SETS: &[&str] = &["GLSL.std.450"];
 
+const DEGREES_TO_RADIANS_CONST_INDEX: usize = 0;
+const RADIANS_TO_DEGREES_CONST_INDEX: usize = 1;
+
 #[derive(Copy, Clone)]
 pub struct Instruction {
     op: spirv::Op,
@@ -424,6 +427,8 @@ pub struct Parser<I> {
     options: Options,
     index_constants: Vec<Handle<crate::Constant>>,
     index_constant_expressions: Vec<Handle<crate::Expression>>,
+    maths_constants: Vec<Handle<crate::Constant>>,
+    maths_constant_expressions: Vec<Handle<crate::Expression>>,
 }
 
 impl<I: Iterator<Item = u32>> Parser<I> {
@@ -454,6 +459,8 @@ impl<I: Iterator<Item = u32>> Parser<I> {
             options: options.clone(),
             index_constants: Vec::new(),
             index_constant_expressions: Vec::new(),
+            maths_constants: Vec::new(),
+            maths_constant_expressions: Vec::new(),
         }
     }
 
@@ -1731,21 +1738,15 @@ impl<I: Iterator<Item = u32>> Parser<I> {
                             self.lookup_expression.lookup(arg_id)?.handle
                         };
 
-                        let constant_handle = const_arena.fetch_or_append(crate::Constant {
-                            name: None,
-                            specialization: None,
-                            inner: crate::ConstantInner::Scalar {
-                                width: 4,
-                                value: crate::ScalarValue::Float(match gl_op {
-                                    Glo::Radians => std::f64::consts::PI / 180.0,
-                                    Glo::Degrees => 180.0 / std::f64::consts::PI,
-                                    _ => unreachable!(),
-                                }),
-                            },
-                        });
-
-                        let expr_handle =
-                            expressions.append(crate::Expression::Constant(constant_handle));
+                        let constant = match gl_op {
+                            Glo::Radians => {
+                                self.maths_constant_expressions[DEGREES_TO_RADIANS_CONST_INDEX]
+                            }
+                            Glo::Degrees => {
+                                self.maths_constant_expressions[RADIANS_TO_DEGREES_CONST_INDEX]
+                            }
+                            _ => unreachable!(),
+                        };
 
                         self.lookup_expression.insert(
                             result_id,
@@ -1753,7 +1754,7 @@ impl<I: Iterator<Item = u32>> Parser<I> {
                                 handle: expressions.append(crate::Expression::Binary {
                                     op: crate::BinaryOperator::Multiply,
                                     left: arg,
-                                    right: expr_handle,
+                                    right: constant,
                                 }),
                                 type_id: result_type_id,
                             },
@@ -2107,6 +2108,11 @@ impl<I: Iterator<Item = u32>> Parser<I> {
             let handle = expressions.append(crate::Expression::Constant(con_handle));
             self.index_constant_expressions.push(handle);
         }
+        self.maths_constant_expressions.clear();
+        for &con_handle in self.maths_constants.iter() {
+            let handle = expressions.append(crate::Expression::Constant(con_handle));
+            self.maths_constant_expressions.push(handle);
+        }
         // register constants
         for (&id, con) in self.lookup_constant.iter() {
             let handle = expressions.append(crate::Expression::Constant(con.handle));
@@ -2220,6 +2226,29 @@ impl<I: Iterator<Item = u32>> Parser<I> {
                 },
             });
             self.index_constants.push(handle);
+        }
+
+        // register maths constants
+        self.maths_constants.clear();
+        {
+            self.maths_constants
+                .push(module.constants.append(crate::Constant {
+                    name: None,
+                    specialization: None,
+                    inner: crate::ConstantInner::Scalar {
+                        width: 4,
+                        value: crate::ScalarValue::Float(std::f64::consts::PI / 180.0),
+                    },
+                }));
+            self.maths_constants
+                .push(module.constants.append(crate::Constant {
+                    name: None,
+                    specialization: None,
+                    inner: crate::ConstantInner::Scalar {
+                        width: 4,
+                        value: crate::ScalarValue::Float(180.0 / std::f64::consts::PI),
+                    },
+                }));
         }
 
         self.dummy_functions = Arena::new();
