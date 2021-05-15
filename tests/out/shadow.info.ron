@@ -8,7 +8,7 @@
                 bits: 7,
             ),
             uniformity: (
-                non_uniform_result: Some(48),
+                non_uniform_result: Some(50),
                 requirements: (
                     bits: 0,
                 ),
@@ -202,6 +202,34 @@
                     ref_count: 0,
                     assignable_global: None,
                     ty: Value(Scalar(
+                        kind: Float,
+                        width: 4,
+                    )),
+                ),
+                (
+                    uniformity: (
+                        non_uniform_result: None,
+                        requirements: (
+                            bits: 0,
+                        ),
+                    ),
+                    ref_count: 0,
+                    assignable_global: None,
+                    ty: Value(Scalar(
+                        kind: Float,
+                        width: 4,
+                    )),
+                ),
+                (
+                    uniformity: (
+                        non_uniform_result: None,
+                        requirements: (
+                            bits: 0,
+                        ),
+                    ),
+                    ref_count: 0,
+                    assignable_global: None,
+                    ty: Value(Scalar(
                         kind: Sint,
                         width: 4,
                     )),
@@ -681,7 +709,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(47),
+                        non_uniform_result: Some(49),
                         requirements: (
                             bits: 0,
                         ),
@@ -692,7 +720,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -703,7 +731,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -717,7 +745,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -731,7 +759,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -745,7 +773,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -759,7 +787,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -781,7 +809,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -792,7 +820,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -806,7 +834,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -820,7 +848,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -846,7 +874,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -857,7 +885,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -871,7 +899,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -885,7 +913,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(47),
+                        non_uniform_result: Some(49),
                         requirements: (
                             bits: 0,
                         ),
@@ -899,7 +927,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(47),
+                        non_uniform_result: Some(49),
                         requirements: (
                             bits: 0,
                         ),
@@ -913,7 +941,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -924,7 +952,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -938,7 +966,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -952,7 +980,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -966,7 +994,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -980,7 +1008,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -994,7 +1022,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -1008,7 +1036,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -1019,7 +1047,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -1033,7 +1061,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -1047,7 +1075,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -1069,7 +1097,7 @@
                 bits: 7,
             ),
             uniformity: (
-                non_uniform_result: Some(48),
+                non_uniform_result: Some(50),
                 requirements: (
                     bits: 0,
                 ),
@@ -1263,6 +1291,34 @@
                     ref_count: 0,
                     assignable_global: None,
                     ty: Value(Scalar(
+                        kind: Float,
+                        width: 4,
+                    )),
+                ),
+                (
+                    uniformity: (
+                        non_uniform_result: None,
+                        requirements: (
+                            bits: 0,
+                        ),
+                    ),
+                    ref_count: 0,
+                    assignable_global: None,
+                    ty: Value(Scalar(
+                        kind: Float,
+                        width: 4,
+                    )),
+                ),
+                (
+                    uniformity: (
+                        non_uniform_result: None,
+                        requirements: (
+                            bits: 0,
+                        ),
+                    ),
+                    ref_count: 0,
+                    assignable_global: None,
+                    ty: Value(Scalar(
                         kind: Sint,
                         width: 4,
                     )),
@@ -1742,7 +1798,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(47),
+                        non_uniform_result: Some(49),
                         requirements: (
                             bits: 0,
                         ),
@@ -1756,7 +1812,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -1770,7 +1826,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -1839,7 +1895,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -1853,7 +1909,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(47),
+                        non_uniform_result: Some(49),
                         requirements: (
                             bits: 0,
                         ),
@@ -1864,7 +1920,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -1889,7 +1945,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -1900,7 +1956,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -1914,7 +1970,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -1928,7 +1984,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -1950,7 +2006,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -1965,7 +2021,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2012,7 +2068,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2023,7 +2079,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2037,7 +2093,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2051,7 +2107,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2067,7 +2123,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2095,7 +2151,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2106,7 +2162,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2120,7 +2176,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2134,7 +2190,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2150,7 +2206,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2178,7 +2234,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2189,7 +2245,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2203,7 +2259,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2217,7 +2273,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2233,7 +2289,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2247,7 +2303,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2359,7 +2415,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2370,7 +2426,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2409,7 +2465,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2437,7 +2493,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2448,7 +2504,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2462,7 +2518,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2476,7 +2532,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2492,7 +2548,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2520,7 +2576,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2531,7 +2587,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2545,7 +2601,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2559,7 +2615,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2575,7 +2631,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2603,7 +2659,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2614,7 +2670,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2628,7 +2684,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2642,7 +2698,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2658,7 +2714,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2672,7 +2728,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2683,7 +2739,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2694,7 +2750,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(47),
+                        non_uniform_result: Some(49),
                         requirements: (
                             bits: 0,
                         ),
@@ -2705,7 +2761,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2716,7 +2772,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(48),
+                        non_uniform_result: Some(50),
                         requirements: (
                             bits: 0,
                         ),
@@ -2727,7 +2783,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(47),
+                        non_uniform_result: Some(49),
                         requirements: (
                             bits: 0,
                         ),
@@ -2738,7 +2794,7 @@
                 ),
                 (
                     uniformity: (
-                        non_uniform_result: Some(47),
+                        non_uniform_result: Some(49),
                         requirements: (
                             bits: 0,
                         ),
@@ -2759,7 +2815,7 @@
                 bits: 7,
             ),
             uniformity: (
-                non_uniform_result: Some(48),
+                non_uniform_result: Some(50),
                 requirements: (
                     bits: 0,
                 ),
