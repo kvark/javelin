@@ -1232,12 +1232,11 @@ impl Parser {
         mut handle: Handle<crate::Expression>,
         allow_deref: bool,
     ) -> Result<Handle<crate::Expression>, Error<'a>> {
-        let mut needs_deref = match ctx.expressions[handle] {
-            crate::Expression::LocalVariable(_) | crate::Expression::GlobalVariable(_) => {
-                allow_deref
-            }
-            _ => false,
-        };
+        let mut needs_deref = allow_deref
+            && matches!(
+                ctx.expressions[handle],
+                crate::Expression::LocalVariable(_) | crate::Expression::GlobalVariable(_)
+            );
         loop {
             // insert the E::Load when we reach a value
             if needs_deref {
