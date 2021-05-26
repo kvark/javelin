@@ -755,6 +755,9 @@ impl super::Validator {
                 if !condition_good || accept_inner != reject_inner {
                     return Err(ExpressionError::InvalidSelectTypes);
                 }
+                if let Ti::Pointer { .. } = *accept_inner {
+                    return Err(ExpressionError::InvalidSelectTypes);
+                }
                 ShaderStages::all()
             }
             E::Derivative { axis: _, expr } => {
