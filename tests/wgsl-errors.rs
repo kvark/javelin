@@ -312,7 +312,7 @@ fn invalid_pointer_use() {
         [[group(0), binding(0)]] var<storage> first: Unsized;
         [[group(1), binding(0)]] var<storage> second: Unsized;
 
-        fn bad_select(which: bool) -> ptr<storage, f32> {
+        fn bad_select(which: bool) -> f32 {
            let ptr = select(&first, &second, which);
            return ptr.runtime[0];
         }
@@ -326,5 +326,26 @@ fn invalid_pointer_use() {
             ..
         })
         if function_name == "bad_select"
+    }
+
+    check_validation_error! {
+        "
+        [[block]]
+        struct AFloat {
+          said_float: f32;
+        };
+        [[group(0), binding(0)]]
+        var<storage> float: [[access(read_write)]] AFloat;
+
+        fn return_pointer() -> ptr<storage, f32> {
+           return &float.said_float;
+        }
+        ":
+        Err(naga::valid::ValidationError::Function {
+            name: function_name,
+            error: naga::valid::FunctionError::InvalidReturnType(None),
+            ..
+        })
+        if function_name == "return_pointer"
     }
 }
