@@ -120,7 +120,8 @@ macro_rules! check_validation_error {
     };
 
     ( $( $source:literal ),* : $pattern:pat if $guard:expr ) => {
-        check_validation_error!( @full $( $source ),* : $pattern if $guard ; stringify!( $guard ) );
+        check_validation_error!( @full $( $source ),* : $pattern
+                                 if $guard ; concat!("\nif ", stringify!( $guard )) );
     };
 
     ( @full $( $source:literal ),* : $pattern:pat if $guard:expr ; $guard_string:expr ) => {
@@ -210,7 +211,7 @@ fn invalid_structs() {
     check_validation_error! {
         "[[block]] struct Bad { data: ptr<storage, f32>; };":
         Err(naga::valid::ValidationError::Type {
-            error: naga::valid::TypeError::InvalidBlockType(_),
+            error: naga::valid::TypeError::InvalidData(_),
             ..
         })
     }
@@ -312,5 +313,55 @@ fn missing_bindings() {
             ),
             ..
         })
+    }
+}
+
+#[test]
+fn invalid_pointer_use() {
+    check_validation_error! {
+        "
+        [[block]]
+        struct Unsized {
+          runtime: array<f32, 4>;
+        };
+
+        [[group(0), binding(0)]] var<storage> first: Unsized;
+        [[group(1), binding(0)]] var<storage> second: Unsized;
+
+        fn bad_select(which: bool) -> f32 {
+           let ptr = select(&first, &second, which);
+           return ptr.runtime[0];
+        }
+        ":
+        Err(naga::valid::ValidationError::Function {
+            name: function_name,
+            error: naga::valid::FunctionError::Expression {
+                error: naga::valid::ExpressionError::InvalidSelectTypes,
+                ..
+            },
+            ..
+        })
+        if function_name == "bad_select"
+    }
+
+    check_validation_error! {
+        "
+        [[block]]
+        struct AFloat {
+          said_float: f32;
+        };
+        [[group(0), binding(0)]]
+        var<storage> float: [[access(read_write)]] AFloat;
+
+        fn return_pointer() -> ptr<storage, f32> {
+           return &float.said_float;
+        }
+        ":
+        Err(naga::valid::ValidationError::Function {
+            name: function_name,
+            error: naga::valid::FunctionError::InvalidReturnType(None),
+            ..
+        })
+        if function_name == "return_pointer"
     }
 }

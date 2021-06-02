@@ -192,7 +192,7 @@ impl super::Validator {
                 if base >= handle {
                     return Err(TypeError::UnresolvedBase(base));
                 }
-                TypeInfo::new(TypeFlags::DATA | TypeFlags::SIZED, 0)
+                TypeInfo::new(TypeFlags::SIZED, 0)
             }
             Ti::ValuePointer {
                 size: _,

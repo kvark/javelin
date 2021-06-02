@@ -567,6 +567,15 @@ impl super::Validator {
             }
         }
 
+        if let Some(ref result) = fun.result {
+            if !self.types[result.ty.index()]
+                .flags
+                .contains(TypeFlags::DATA | TypeFlags::SIZED)
+            {
+                return Err(FunctionError::InvalidReturnType(None));
+            }
+        }
+
         self.valid_expression_set.clear();
         for (handle, expr) in fun.expressions.iter() {
             if expr.needs_pre_emit() {
