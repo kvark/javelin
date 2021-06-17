@@ -475,6 +475,8 @@ pub enum TypeInner {
         rows: VectorSize,
         width: Bytes,
     },
+    /// Atomic scalar.
+    Atomic { kind: ScalarKind, width: Bytes },
     /// Pointer to another type.
     Pointer {
         base: Handle<Type>,

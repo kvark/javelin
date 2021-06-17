@@ -7,16 +7,18 @@ use crate::{
 bitflags::bitflags! {
     #[repr(transparent)]
     pub struct TypeFlags: u8 {
-        /// Can be used for data variables.
+        /// Represents plain data.
         const DATA = 0x1;
         /// The data type has known size.
         const SIZED = 0x2;
+        /// The data can be copied around.
+        const COPY = 0x4;
         /// Can be be used for interfacing between pipeline stages.
-        const INTERFACE = 0x4;
+        const INTERFACE = 0x10;
         /// Can be used for host-shareable structures.
-        const HOST_SHARED = 0x8;
+        const HOST_SHARED = 0x20;
         /// This is a top-level host-shareable type.
-        const TOP_LEVEL = 0x10;
+        const TOP_LEVEL = 0x40;
     }
 }
 
@@ -40,6 +42,8 @@ pub enum Disalignment {
 pub enum TypeError {
     #[error("The {0:?} scalar width {1} is not supported")]
     InvalidWidth(crate::ScalarKind, crate::Bytes),
+    #[error("The {0:?} scalar width {1} is not supported for an atomic")]
+    InvalidAtomicWidth(crate::ScalarKind, crate::Bytes),
     #[error("The base handle {0:?} can not be resolved")]
     UnresolvedBase(Handle<crate::Type>),
     #[error("Expected data type, found {0:?}")]
@@ -153,6 +157,7 @@ impl super::Validator {
                 TypeInfo::new(
                     TypeFlags::DATA
                         | TypeFlags::SIZED
+                        | TypeFlags::COPY
                         | TypeFlags::INTERFACE
                         | TypeFlags::HOST_SHARED,
                     width as u32,
@@ -166,6 +171,7 @@ impl super::Validator {
                 TypeInfo::new(
                     TypeFlags::DATA
                         | TypeFlags::SIZED
+                        | TypeFlags::COPY
                         | TypeFlags::INTERFACE
                         | TypeFlags::HOST_SHARED,
                     count * (width as u32),
@@ -183,16 +189,30 @@ impl super::Validator {
                 TypeInfo::new(
                     TypeFlags::DATA
                         | TypeFlags::SIZED
+                        | TypeFlags::COPY
                         | TypeFlags::INTERFACE
                         | TypeFlags::HOST_SHARED,
                     count * (width as u32),
+                )
+            }
+            Ti::Atomic { kind, width } => {
+                let good = match kind {
+                    crate::ScalarKind::Bool | crate::ScalarKind::Float => false,
+                    crate::ScalarKind::Sint | crate::ScalarKind::Uint => width == 4,
+                };
+                if !good {
+                    return Err(TypeError::InvalidAtomicWidth(kind, width));
+                }
+                TypeInfo::new(
+                    TypeFlags::DATA | TypeFlags::SIZED | TypeFlags::HOST_SHARED,
+                    width as u32,
                 )
             }
             Ti::Pointer { base, class: _ } => {
                 if base >= handle {
                     return Err(TypeError::UnresolvedBase(base));
                 }
-                TypeInfo::new(TypeFlags::DATA | TypeFlags::SIZED, 0)
+                TypeInfo::new(TypeFlags::DATA | TypeFlags::SIZED | TypeFlags::COPY, 0)
             }
             Ti::ValuePointer {
                 size: _,
@@ -203,7 +223,7 @@ impl super::Validator {
                 if !self.check_width(kind, width) {
                     return Err(TypeError::InvalidWidth(kind, width));
                 }
-                TypeInfo::new(TypeFlags::SIZED, 0)
+                TypeInfo::new(TypeFlags::DATA | TypeFlags::SIZED | TypeFlags::COPY, 0)
             }
             Ti::Array { base, size, stride } => {
                 if base >= handle {
@@ -302,7 +322,7 @@ impl super::Validator {
                     }
                 };
 
-                let base_mask = TypeFlags::HOST_SHARED | TypeFlags::INTERFACE;
+                let base_mask = TypeFlags::COPY | TypeFlags::HOST_SHARED | TypeFlags::INTERFACE;
                 TypeInfo {
                     flags: TypeFlags::DATA | (base_info.flags & base_mask) | sized_flag,
                     uniform_layout,
@@ -317,6 +337,7 @@ impl super::Validator {
                 let mut ti = TypeInfo::new(
                     TypeFlags::DATA
                         | TypeFlags::SIZED
+                        | TypeFlags::COPY
                         | TypeFlags::HOST_SHARED
                         | TypeFlags::INTERFACE,
                     1,
