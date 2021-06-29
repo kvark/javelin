@@ -188,13 +188,16 @@ impl super::Validator {
                 if !self.check_width(kind, width) {
                     return Err(TypeError::InvalidWidth(kind, width));
                 }
-                TypeInfo::new(
-                    TypeFlags::DATA
-                        | TypeFlags::SIZED
-                        | TypeFlags::INTERFACE
-                        | TypeFlags::HOST_SHARED,
-                    width as u32,
-                )
+                let type_flags = match kind {
+                    crate::ScalarKind::Bool => TypeFlags::DATA | TypeFlags::SIZED,
+                    _ => {
+                        TypeFlags::DATA
+                            | TypeFlags::SIZED
+                            | TypeFlags::INTERFACE
+                            | TypeFlags::HOST_SHARED
+                    }
+                };
+                TypeInfo::new(type_flags, width as u32)
             }
             Ti::Vector { size, kind, width } => {
                 if !self.check_width(kind, width) {
@@ -390,7 +393,13 @@ impl super::Validator {
                         return Err(TypeError::InvalidData(member.ty));
                     }
                     if top_level && !base_info.flags.contains(TypeFlags::INTERFACE) {
-                        return Err(TypeError::InvalidBlockType(member.ty));
+                        // Certain non-`INTERFACE` types like arrays and `bool` are
+                        // permitted for built-ins, whose types we verify in
+                        // `VaryingContext::validate`.
+                        match member.binding {
+                            Some(crate::Binding::BuiltIn(_)) => (),
+                            _ => return Err(TypeError::InvalidBlockType(member.ty)),
+                        }
                     }
                     if base_info.flags.contains(TypeFlags::TOP_LEVEL) {
                         return Err(TypeError::NestedTopLevel);
