@@ -1597,7 +1597,7 @@ impl Parser {
         };
 
         let span = self.pop_scope(lexer);
-        const_arena.add_span(handle, ArenaSpan::ByteRange(span));
+        const_arena.set_span_if_unknown(handle, ArenaSpan::ByteRange(span));
 
         Ok(handle)
     }
@@ -1653,7 +1653,7 @@ impl Parser {
             other => return Err(Error::Unexpected(other, ExpectedToken::PrimaryExpression)),
         };
         let span = self.pop_scope(lexer);
-        ctx.expressions.add_span(handle, ArenaSpan::ByteRange(span));
+        ctx.expressions.set_span(handle, ArenaSpan::ByteRange(span));
         Ok(handle)
     }
 
@@ -1836,7 +1836,7 @@ impl Parser {
 
         let post_handle = self.parse_postfix(lexer, ctx.reborrow(), handle, allow_deref)?;
         let span = self.pop_scope(lexer);
-        ctx.expressions.add_span(post_handle, ArenaSpan::ByteRange(span));
+        ctx.expressions.set_span(post_handle, ArenaSpan::ByteRange(span));
         Ok(post_handle)
     }
 
@@ -1980,7 +1980,7 @@ impl Parser {
             },
         )?;
         let span = self.pop_scope(lexer);
-        context.expressions.add_span(handle, ArenaSpan::ByteRange(span));
+        context.expressions.set_span(handle, ArenaSpan::ByteRange(span));
         Ok(handle)
     }
 
@@ -2497,7 +2497,7 @@ impl Parser {
             const_arena,
         )?;
         let span = self.pop_scope(lexer);
-        type_arena.add_span(handle, ArenaSpan::ByteRange(span));
+        type_arena.set_span(handle, ArenaSpan::ByteRange(span));
         Ok((handle, storage_access))
     }
 
@@ -3294,7 +3294,7 @@ impl Parser {
                     init: pvar.init,
                     storage_access: pvar.access,
                 });
-                module.global_variables.add_span(var_handle, ArenaSpan::ByteRange(pvar.name_span));
+                module.global_variables.set_span(var_handle, ArenaSpan::ByteRange(pvar.name_span));
                 lookup_global_expression
                     .insert(pvar.name, crate::Expression::GlobalVariable(var_handle));
             }

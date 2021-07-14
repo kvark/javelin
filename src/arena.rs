@@ -257,9 +257,20 @@ impl<T> Arena<T> {
     }
 
     #[allow(unused_variables)]
-    pub fn add_span(&mut self, handle: Handle<T>, span: Span) {
+    pub fn set_span(&mut self, handle: Handle<T>, span: Span) {
         #[cfg(feature = "span")] {
-            self.span_info[handle.index()].subsume(&span);
+            self.span_info[handle.index()].clone_from(&span);
+        }
+    }
+
+    #[allow(unused_variables)]
+    pub fn set_span_if_unknown(&mut self, handle: Handle<T>, span: Span) {
+
+        #[cfg(feature = "span")] {
+            let ref mut existing = self.span_info[handle.index()];
+            if let Span::Unknown = existing {
+                existing.clone_from(&span);
+            }
         }
     }
 }
